@@ -188,3 +188,141 @@ except ZeroDivisionError:
 except ValueError:
     print('Has introducido un valor incorrecto')
 
+# 9. Escribe una función que tome una lista de nombres de mascotas como parámetro y devuelva una nueva lista excluyendo ciertas mascotas prohibidas en España. 
+# La lista de mascotas a excluir es ["Mapache", "Tigre","Serpiente Pitón", "Cocodrilo", "Oso"].Usa la función filter()
+
+def lista_de_mascotas(mascotas):
+    """Retorna una lista de mascotas excluyendo ciertas mascotas.
+
+    Args:
+        mascotas (list): Una lista de mascotas.
+
+    Returns:
+        list: Una lista de mascotas excluyendo cieras mascotas.
+       """
+    return list(filter(lambda x: x != 'mapache' and x != 'tigre' and x!='serpiente piton' and x!= 'cocodrilo' and x!='oso', mascotas))
+
+# Hacemos un filtro para excluir las mascotas que no queremos sobre la lista de mascotas utilizando una funcion lambda.
+
+lista_mascotas= ['perro', 'gato', 'mapache', 'tigre', 'serpiente piton', 'cocodrilo', 'oso']
+mascotas_permitidas= lista_de_mascotas(lista_mascotas)
+print(mascotas_permitidas)
+
+# Resultado: ['perro', 'gato']
+
+# 10. Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, lanza una excepción 
+# personalizada y maneja el error adecuadamente.
+
+def promedio_lista_numeros(lista):
+    """Retorna el promedio de los numeros de la lista.
+
+    Args:
+        lista (list): Una lista de numeros.
+
+    Returns:
+        float: El promedio de los numeros de la lista.
+    """
+    try:
+        return sum(lista)/len(lista)
+    except ZeroDivisionError:
+        return print('La lista esta vacia')
+    
+lista_num=(4,7,5,10,22,-1)
+promedio = promedio_lista_numeros(lista_num)
+print(promedio)
+
+# Resultado: 7.833333333333333
+
+# 11. Escribe un programa que pida al usuario que introduzca su edad. Si el usuario ingresa un valor no numérico o un
+# valor fuera del rango esperado (por ejemplo, menor que 0 o mayor que 120), maneja las excepciones
+# adecuadamente.
+
+try:
+    print('Por favor ingrese su edad')
+    edad = int(input())
+except ValueError:
+    print('Por favor ingrese un valor numerico')
+else:
+    if edad <0 or edad>120:
+        print('Por favor ingrese una edad valida')
+
+# 12. Genera una función que al recibir una frase devuelva una lista con la longitud de cada palabra. Usa la función map()
+
+def frase_longitud_palabras(frase):
+    """Retorna una lista con la longitud de cada palabra de la frase.
+
+    Args:
+        frase (str): Una frase.
+
+    Returns:
+        list: Una lista con la longitud de cada palabra de la frase.
+    """
+    return list(map(len, frase.split()))
+
+frase = "Hola caracola"
+longitud_frase = frase_longitud_palabras(frase)
+print(longitud_frase)
+# Resultado: [4, 8]
+
+# 13. Genera una la cual, para un conjunto de caracteres,devuelva una lista de tuplas con cada letra en mayusculas y minusculas. 
+# las letras no pueden estar repetidas. Usa la funcion map()
+
+def mayusculas_minusculas(caracteres):
+    caracteres_unicos = list(set(caracteres.lower()))
+    return list(map(lambda c: (c.upper(), c.lower()), caracteres_unicos))
+
+resultado = mayusculas_minusculas('Esternocleidomastoideo')
+print(resultado)
+
+# Resultado: [('N', 'n'), ('S', 's'), ('O', 'o'), ('C', 'c'), ('A', 'a'), ('M', 'm'), ('E', 'e'), ('T', 't'), ('R', 'r'), ('L', 'l'), ('I', 'i'), ('D', 'd')]
+
+# 14. Crea una función que retorne las palabras de una lista de palabras que comience con una letra en especifico. Usa la función filter()
+
+def lista_comienzo_letra(letra, lista):
+    """Retorna una lista con los elementos que comienzan con la letra dada.
+
+    Args:
+        letra (str): Una letra.
+        lista (list): Una lista de palabras.
+
+    Returns:
+        list: Una lista con los elementos que comienzan con la letra dada.
+    """
+    return list(filter(lambda x: x[0] == letra, lista))
+
+lista_palabres = ['coche', 'avion', 'helicoptero', 'casa', 'cama']
+letra = 'c'
+resultado = lista_comienzo_letra(letra, lista_palabres)
+print(resultado)
+
+# Resultado: ['coche', 'casa', 'cama']
+
+# 15. Crea una función lambda que sume 3 a cada número de una lista dada.
+
+lista_numeros = [1,2,3,4,5,6,7,8,9,10]
+print (list(map(lambda x: x+3,lista_numeros)))
+
+# Resultado: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+
+# 16. Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista de
+# todas las palabras que sean más largas que n. Usa la función filter()
+
+def lista_mas_larga_que(lista, longitud):
+    """Retorna una lista con las palabras que tienen una longitud mayor que la dada.
+
+    Args:
+        lista (list): Una lista de palabras.
+        longitud (int): Una longitud.
+
+    Returns:
+        list: Una lista con las palabras que tienen una longitud mayor que la dada.
+    """
+    return list(filter(lambda x: len(x) > longitud, lista))
+# Aqui hacemos un filto de la longitud de las palabras de la lista de palabras utilizando una funcion lambda.
+
+lista_palabras = ['coche', 'avion', 'helicoptero', 'casa', 'cama']
+longitud = 4
+resultado = lista_mas_larga_que(lista_palabras, longitud)
+print(resultado)
+
+# Resultado: ['coche', 'avion', 'helicoptero']
