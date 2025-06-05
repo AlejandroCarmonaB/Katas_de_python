@@ -1,6 +1,7 @@
+from functools import reduce
+
 #1. Escribe una función que reciba una cadena de texto como parámetro y devuelva un diccionario con las frecuencias
 #de cada letra en la cadena. Los espacios no deben ser considerados.
-
 def cadena(frase):
     """retorna un diccionario con la frecuencia de cada caracter en la frase.No se deben contar los espacios en blanco.
 
@@ -44,7 +45,6 @@ print(cuadrados)
 
 #3. Escribe una función que tome una lista de palabras y una palabra objetivo como parámetros. La función debe
 #devolver una lista con todas las palabras de la lista original que contengan la palabra objetivo.
-
 def palabra_contenida_en_palabras(palabra, palabras):
     """Retorna una lista con las palabras que contienen la palabra dada.
 
@@ -71,7 +71,6 @@ print(resultado)
 
 
 #4. Genera una función que calcule la diferencia entre los valores de dos listas. Usa la función map()
-
 def diferencia_entre_listas(lista1, lista2):
     """Retorna una lista con los elementos que estan en la lista1 y no en la lista2.
 
@@ -101,7 +100,6 @@ print(resultado)
 #defecto es 5. La función debe calcular la media de los números en la lista y determinar si la media es mayor o igual
 #que nota aprobado. Si es así, el estado será "aprobado", de lo contrario, será "suspenso". La función debe devolver
 #una tupla que contenga la media y el estado.
-
 def media(lista, nota_aprobado=5):
     """Retorna la media de los elementos de la lista,y si son mayores que la nota de aprobado devolvera aprobrado y si no suspenso.
 
@@ -150,7 +148,6 @@ print(factorial_numero)
 
 
 #7. Genera una función que convierta una lista de tuplas a una lista de strings. Usa la función map()
-
 def lista_de_strings(lista_tuplas):
     """Retorna una lista de strings con los elementos de cada tupla.
 
@@ -173,10 +170,10 @@ print(tuplas_a_string)
 # Ahora entiendo la ultima parte de la funcion, para cada tupla en lista_tuplas: para cada elemento en tupla: agregalo a la nueva lista.
 
 
+
 # 8. Escribe un programa que pida al usuario dos números e intente dividirlos. Si el usuario ingresa un valor no numérico
 # o intenta dividir por cero, maneja esas excepciones de manera adecuada. Asegúrate de mostrar un mensaje
 # indicando si la división fue exitosa o no.
-
 try:
     print ('Por favor ingrese un numero')
     numero = int(input())
@@ -188,9 +185,10 @@ except ZeroDivisionError:
 except ValueError:
     print('Has introducido un valor incorrecto')
 
+
+
 # 9. Escribe una función que tome una lista de nombres de mascotas como parámetro y devuelva una nueva lista excluyendo ciertas mascotas prohibidas en España. 
 # La lista de mascotas a excluir es ["Mapache", "Tigre","Serpiente Pitón", "Cocodrilo", "Oso"].Usa la función filter()
-
 def lista_de_mascotas(mascotas):
     """Retorna una lista de mascotas excluyendo ciertas mascotas.
 
@@ -210,9 +208,10 @@ print(mascotas_permitidas)
 
 # Resultado: ['perro', 'gato']
 
+
+
 # 10. Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, lanza una excepción 
 # personalizada y maneja el error adecuadamente.
-
 def promedio_lista_numeros(lista):
     """Retorna el promedio de los numeros de la lista.
 
@@ -233,10 +232,11 @@ print(promedio)
 
 # Resultado: 7.833333333333333
 
+
+
 # 11. Escribe un programa que pida al usuario que introduzca su edad. Si el usuario ingresa un valor no numérico o un
 # valor fuera del rango esperado (por ejemplo, menor que 0 o mayor que 120), maneja las excepciones
 # adecuadamente.
-
 try:
     print('Por favor ingrese su edad')
     edad = int(input())
@@ -246,8 +246,9 @@ else:
     if edad <0 or edad>120:
         print('Por favor ingrese una edad valida')
 
-# 12. Genera una función que al recibir una frase devuelva una lista con la longitud de cada palabra. Usa la función map()
 
+
+# 12. Genera una función que al recibir una frase devuelva una lista con la longitud de cada palabra. Usa la función map()
 def frase_longitud_palabras(frase):
     """Retorna una lista con la longitud de cada palabra de la frase.
 
@@ -264,9 +265,10 @@ longitud_frase = frase_longitud_palabras(frase)
 print(longitud_frase)
 # Resultado: [4, 8]
 
+
+
 # 13. Genera una la cual, para un conjunto de caracteres,devuelva una lista de tuplas con cada letra en mayusculas y minusculas. 
 # las letras no pueden estar repetidas. Usa la funcion map()
-
 def mayusculas_minusculas(caracteres):
     caracteres_unicos = list(set(caracteres.lower()))
     return list(map(lambda c: (c.upper(), c.lower()), caracteres_unicos))
@@ -276,8 +278,9 @@ print(resultado)
 
 # Resultado: [('N', 'n'), ('S', 's'), ('O', 'o'), ('C', 'c'), ('A', 'a'), ('M', 'm'), ('E', 'e'), ('T', 't'), ('R', 'r'), ('L', 'l'), ('I', 'i'), ('D', 'd')]
 
-# 14. Crea una función que retorne las palabras de una lista de palabras que comience con una letra en especifico. Usa la función filter()
 
+
+# 14. Crea una función que retorne las palabras de una lista de palabras que comience con una letra en especifico. Usa la función filter()
 def lista_comienzo_letra(letra, lista):
     """Retorna una lista con los elementos que comienzan con la letra dada.
 
@@ -297,16 +300,18 @@ print(resultado)
 
 # Resultado: ['coche', 'casa', 'cama']
 
-# 15. Crea una función lambda que sume 3 a cada número de una lista dada.
 
+
+# 15. Crea una función lambda que sume 3 a cada número de una lista dada.
 lista_numeros = [1,2,3,4,5,6,7,8,9,10]
 print (list(map(lambda x: x+3,lista_numeros)))
 
 # Resultado: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
+
+
 # 16. Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista de
 # todas las palabras que sean más largas que n. Usa la función filter()
-
 def lista_mas_larga_que(lista, longitud):
     """Retorna una lista con las palabras que tienen una longitud mayor que la dada.
 
@@ -326,3 +331,225 @@ resultado = lista_mas_larga_que(lista_palabras, longitud)
 print(resultado)
 
 # Resultado: ['coche', 'avion', 'helicoptero']
+
+
+
+
+# 17. Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2] corresponde al 
+# número quinientos setenta y dos (572). Usa la función reduce()
+def lista_a_numeros(lista):
+    """Retorna el numero correspondiente al unir los numeros de una lista dada.
+
+    Args:
+        numero (int): Un numero entero.
+
+    Returns:
+        list: El numero correspondiente al unir los numeros de una lista dada.
+
+    """
+    return reduce(lambda x,y: str(x)+str(y), lista)
+
+# Aqui tuve que convertir los numeros en strings para poder concatenarlos. Me ha costado saber que tenia que convertirlos en strings para poder concatenarlos.
+
+lista_de_numeros = [22,11,0,3,4]
+numero = lista_a_numeros(lista_de_numeros)
+print(numero)
+# Resultado: 2211034
+
+
+# 18. Escribe un programa en Python que cree una lista de diccionarios que contenga información de estudiantes
+# (nombre, edad, calificación) y use la función filter para extraer a los estudiantes con una calificación mayor o igual a 90. Usa la función filter()
+estudiantes = [
+    {"nombre":'Juan','edad:':22, 'calificacion':85},
+    {"nombre":'Maria','edad:':23, 'calificacion':90},
+    {"nombre":'Alejandro','edad:':40, 'calificacion':75},
+    {"nombre":'Edu','edad:':30, 'calificacion':100}
+]
+# Aqui no sabia como hacerlo y tube que buscar en internet, aun asi no entiendo como funciona.
+
+def es_sobresaliente(estudiante):
+    return estudiante["calificacion"] >= 90
+    
+sobresalientes = list(filter(es_sobresaliente, estudiantes))
+print("Estudiantes con calificación mayor o igual a 90:")
+for estudiante in sobresalientes:
+    print(estudiante)
+
+# Resultado:
+# Estudiantes con calificación mayor o igual a 90:
+# {'nombre': 'Maria', 'edad:': 23, 'calificacion': 90}
+# {'nombre': 'Edu', 'edad:': 30, 'calificacion': 100}
+
+
+# 19. Crea una función lambda que filtre los números impares de una lista dada.
+num_impares = [1,13,2,24,7,151,232,0,-1]
+impares = list(filter(lambda x: x%2!=0,num_impares))
+print(impares)
+
+# Resultado: [1, 13, 7, 151, -1]
+
+
+# 20. Para una lista con elementos tipo integer y string obtén una nueva lista sólo con los valores int. Usa la función filter()
+lista_mezclada = ['hola', 22, 13, 'Antonio', 0, 6]
+lista_int= list(filter(lambda x: type(x) == int, lista_mezclada))
+print(lista_int)
+
+# Resultado: [22, 13, 0, 6]
+
+
+# 21. Crea una función que calcule el cubo de un número dado mediante una función lambda
+def numero_al_cubo():
+    """Retorna el numero al cubo.
+
+    Args:
+        numero (int): Un numero entero.
+
+    Returns:
+        int: El numero al cubo.
+    """
+    return lambda x: x**3
+
+#Tambien se prodira haber utilizado la funcion pow(numero,3), pero he decidido dejarlo asi para tenerlo yo mas claro en un principio.
+# He tenido problemas porque me daba un error que no sabia cual era, y era porque en la funcion ponia num_cubo y luego utilizo la funcion lambda, cuando esto solo devuelve la funcion y no devuelve un valor concreto.
+
+num_cubo = 7
+cubo = numero_al_cubo()
+print(cubo(num_cubo))
+
+# Resultado: 343
+
+
+# 22. Dada una lista numérica, obtén el producto total de los valores de dicha lista.Usa la función reduce().
+lista_num2 = [1,2,3,4,5,6]
+producto = reduce(lambda x, y: x*y, lista_num2)
+print(producto)
+
+# Resultado: 720
+
+
+# 23. Concatena una lista de palabras.Usa la función reduce().
+lista_palabras = ['Casa','Coche','Brocoli','Escoba']
+concat_palabras = reduce(lambda x,y: x + y, lista_palabras)
+print(concat_palabras)
+
+# Resultado: CasaCocheBrocoliEscoba
+
+
+
+#24. Calcula la diferencia total en los valores de una lista. Usa la función reduce().
+lista_diferencia = [52, 12, 8, -13, 1]
+diferencia = reduce(lambda x, y: x - y, lista_diferencia)
+print(diferencia)
+
+# Resultado: 44
+
+
+
+# 25. Crea una función que cuente el número de caracteres en una cadena de texto dada.
+def numero_caracteres(num_caracteres):
+    """Retorna el numero de caracteres de una cadena.
+
+    Args:
+        num_caracteres (str): Una cadena de caracteres.
+
+    Returns:
+        int: El numero de caracteres de la cadena.
+    """
+    return len(num_caracteres)
+    
+
+comida = 'lentejas con chorizo'
+num_caracteres = numero_caracteres(comida)
+print(num_caracteres)
+
+# Resultado: 20
+
+
+# 26. Crea una función lambda que calcule el resto de la división entre dos números dados.
+n1 = 5
+n2 = 10
+resto_division = lambda x,y: x%y
+print(resto_division(n1,n2))
+#Utilizamos % porque eso nos da el resto de la division.
+
+# Resultado: 5
+
+
+
+# 27. Crea una función que calcule el promedio de una lista de números.
+def promedio_numeros(lista_numeros):
+    """Retorna el promedio de los numeros de la lista.
+
+    Args:
+        lista (list): Una lista de numeros.
+
+    Returns:
+        float: El promedio de los numeros de la lista.
+    """
+    return reduce(lambda x,y: x+y, lista_numeros)/len(lista_numeros)
+
+#Utilizamos reduce para iterar sobre la lista y sumar todos los elementos, y luego dividimos por la longitud de la lista para obtener el promedio.
+#Aqui no he tenido en cuenta si la lista esta vacia porque el ejercicio no me lo especificaba, pero se podria hacer con un try except.
+
+lista_numeros = [1,2,3,4,5,6]
+promedio = promedio_numeros(lista_numeros)
+print(promedio)
+
+# Resultado: 3.5
+
+
+
+# 28. Crea una función que busque y devuelva el primer elemento duplicado en una lista dada.
+def primer_valor_repetido(lista):
+    """Encuentra el primer valor repetido en una lista.
+
+    Args:
+        lista (list): Lista de elementos.
+
+    Returns:
+        any: El primer valor repetido o None si no hay repetidos.
+    """
+    vistos = set()  # Usamos un conjunto para almacenar los valores vistos
+
+    for elemento in lista:
+        if elemento in vistos:  # Si ya lo vimos antes, es el primer repetido
+            return elemento
+        vistos.add(elemento)  # Agregamos el elemento al conjunto
+
+    return None  # Si no hay repetidos, devolvemos None
+
+#Tuve que buscar ayuda porque pensaba que habiar que utilizar alguna funcion de lambda, pero no daba con lo que era. 
+#Al final se lo que hace el codigo, pero no hubiera sido capaz de hacerlo yo solo. Creamos un conjunto para almacenar los valores vistos, 
+# y si el elemento ya esta en el conjunto, lo devolvemos, si no lo añadimos al conjunto.
+
+elementos = [1,22, 23, 17, 1, 8, 17]
+repetido = primer_valor_repetido(elementos)
+print(repetido)
+
+# Resultado: 1
+
+
+
+# 29. Crea una función que convierta una variable en una cadena de texto y enmascare todos los caracteres con el
+# carácter '#', excepto los últimos cuatro.
+def enmascarar_valor(valor):
+    """Enmascara un valor con almohadilla.
+
+    Args:
+        valor (str, int, float): Un valor.
+
+    Returns:
+        str: El valor enmascarado.
+    """
+    return '#' * len(str(valor))
+
+#Aqui transformamos el valor en un string y luego multiplicamos el numero de almohadillas por la longitud del string.
+
+valor = 'Phthon'
+enmascarado = enmascarar_valor(valor)
+print(enmascarado)
+# Resultado: ######
+
+
+# 30. Crea una función que determine si dos palabras son anagramas, es decir, si están formadas por las mismas letras
+# pero en diferente orden.
