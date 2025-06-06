@@ -742,3 +742,251 @@ print(barbol.info_arbol()) # Muestra la información del árbol
 # Longitud del tronco: 4
 # Numero de ramas: 2
 # Longitudes de las ramas: [2, 1]
+
+
+
+# 36. Crea la clase UsuarioBanco ,representa a un usuario de un banco con su nombre, saldo y si tiene o no cuenta
+# corriente. Proporciona métodos para realizar operaciones como retirar dinero, transferir dinero desde otro usuario y
+# agregar dinero al saldo.
+# 
+# Código a seguir:
+# 1. Inicializar un usuario con su nombre, saldo y si tiene o no cuenta corriente mediante True y False .
+# 2. Implementar el método retirar_dinero para retirar dinero del saldo del usuario. Lanzará un error en caso de no
+# poder hacerse.
+# 3. Implementar el método transferir_dinero para realizar una transferencia desde otro usuario al usuario actual.
+# Lanzará un error en caso de no poder hacerse.
+# 4. Implementar el método agregar_dinero para agregar dinero al saldo del usuario.
+# Caso de uso:
+# 1. Crear dos usuarios: "Alicia" con saldo inicial de 100 y "Bob" con saldo inicial de 50, ambos con cuenta corriente.
+# PROYECTO LÓGICA: Katas de Python 3
+# 2. Agregar 20 unidades de saldo de "Bob".
+# 3. Hacer una transferencia de 80 unidades desde "Bob" a "Alicia".
+# 4. Retirar 50 unidades de saldo a "Alicia".
+class usuarioBanco:
+    def __init__(self,nombre,saldo,cuenta):
+        self.nombre = nombre
+        self.saldo = saldo
+        self.cuenta = cuenta
+
+    def sacarDinero(self):
+        cantidad = int(input('Introduzca la cantidad a sacar: '))
+        if cantidad > self.saldo:
+            print('No puede retirar ese dinero porque no tiene suficiente en la cuenta')
+        else:
+            self.saldo = self.saldo - cantidad
+            print(f'Su saldo ahora es {self.saldo}')
+
+    def transferencia(self,usuario2):
+        cantidad2 = int(input('Introduzca la cantidad a transferir: '))
+        if cantidad2 > self.saldo:
+            print('No tiene suficiente dinero para transferir a la cuenta de destino')
+        else:
+            self.saldo= self.saldo - cantidad2
+            usuario2.saldo=usuario2.saldo + cantidad2
+            print(f'Transferencia realizada con exito. Tu saldo ahora es de: {self.saldo}')
+
+    def ingresarDinero(self):
+        cantidad3=int(input('Introduzca la cantidad a ingresar: '))
+        self.saldo+=cantidad3
+        print(f'Cantidad Ingresada. Su saldo ahora es de {self.saldo}')
+
+cliente1=usuarioBanco('Alicia',100,True)
+cliente2=usuarioBanco('Bob',50, True)
+cliente2.ingresarDinero()  # Agrega 20 unidades de saldo a "Bob"
+# Resultado: Cantidad Ingresada. Su saldo ahora es de 70
+cliente2.transferencia('Alicia')  # Hace una transferencia de 80 unidades desde "Bob" a "Alicia"
+# Resultado: No tiene suficiente dinero para transferir a la cuenta de destino
+
+
+
+# 37. Crea una función llamada procesar_texto que procesa un texto según la opción especificada: contar_palabras ,
+# reemplazar_palabras , eliminar_palabra . Estas opciones son otras funciones que tenemos que definir primero y llamar dentro
+# de la función procesar_texto.
+# 
+# Código a seguir:
+# 1. Crear una función contar_palabras para contar el número de veces que aparece cada palabra en el texto. Tiene
+# que devolver un diccionario.
+# 2. Crear una función reemplazar_palabras para remplazar una palabra_original del texto por una palabra_nueva . Tiene
+# que devolver el texto con el remplazo de palabras.
+# 3. Crear una función eliminar_palabra para eliminar una palabra del texto. Tiene que devolver el texto con la palabra
+# eliminada.
+# 4. Crear la función procesar_texto que tome un texto, una opción(entre "contar", "reemplazar", "eliminar") y un
+# número de argumentos variable según la opción indicada.
+# 
+# Caso de uso:
+# Comprueba el funcionamiento completo de la función procesar_texto
+
+def contar_palabras(frase):
+    """Cuenta el numero de veces que aparece cada palabra en la frase.
+
+    Args:
+        frase (str): Una frase.
+
+    Returns:
+        dict: Un diccionario con el numero de veces que aparece cada palabra en la frase.
+    """
+    palabras = frase.split() # Divide la frase en palabras
+    contador = {} # Crea un diccionario vacio para almacenar el conteo de palabras
+    for palabra in palabras:
+        contador[palabra] = contador.get(palabra, 0) + 1 # Cuenta el numero de veces que aparece cada palabra
+    return contador
+
+def reemplazar_palabras(frase, palabra_original, palabra_nueva):
+    """Reemplaza una palabra por otra en la frase.
+
+    Args:
+        frase (str): Una frase.
+        palabra_original (str): La palabra a reemplazar.
+        palabra_nueva (str): La palabra que reemplazara a la original.
+
+    Returns:
+        str: La frase con la palabra reemplazada.
+    """
+    return frase.replace(palabra_original, palabra_nueva) # Reemplaza la palabra original por la nueva
+
+def eliminar_palabra(frase, palabra):
+    """Elimina una palabra de la frase.
+
+    Args:
+        frase (str): Una frase.
+        palabra (str): La palabra a eliminar.
+
+    Returns:
+        str: La frase con la palabra eliminada.
+    """
+    palabras = frase.split() # Divide la frase en palabras
+    palabras = [p for p in palabras if p != palabra] # Elimina la palabra de la lista de palabras
+    return ' '.join(palabras) # Une las palabras restantes en una nueva frase
+
+def procesar_texto(frase, opcion, *args):
+    """Procesa el texto segun la opcion indicada.
+
+    Args:
+        frase (str): Una frase.
+        opcion (str): La opcion a realizar. Puede ser "contar", "reemplazar" o "eliminar".
+        *args: Argumentos adicionales segun la opcion indicada.
+
+    Returns:
+        str o dict: El resultado del procesamiento del texto.
+    """
+    if opcion == 'contar':
+        return contar_palabras(frase)
+    elif opcion == 'reemplazar':
+        return reemplazar_palabras(frase, args[0], args[1])
+    elif opcion == 'eliminar':
+        return eliminar_palabra(frase, args[0])
+    else:
+        return 'Opcion no valida'
+    
+# Caso de uso:
+frase = "Hola mundo, hola Python, hola programacion"
+resultado_contar = procesar_texto(frase, 'contar')
+print("Contar palabras:", resultado_contar)
+resultado_reemplazar = procesar_texto(frase, 'reemplazar', 'Python', 'Java')
+print("Reemplazar palabras:", resultado_reemplazar)
+resultado_eliminar = procesar_texto(frase, 'eliminar', 'mundo')
+print("Eliminar palabra:", resultado_eliminar)
+
+# Aqui he tenido problemas porque no sabia como hacer que funcionara, y al final he tenido que buscar ayuda, tanto del profesor como de internet.
+
+
+
+# 38. Genera un programa que nos diga si es de noche, de día o tarde según la hora proporcionada por el usuario.
+def determinar_momento_del_dia(hora):
+    if 0 <= hora < 6 or 20 <= hora <= 23:
+        return ' de noche'
+    elif 6 <= hora < 12:
+        return ' de mañana'
+    elif 12 <= hora < 20:
+        return ' de tarde'
+    else:
+        return 'Hora no valida'
+    
+while True:
+    try:
+        hora_usuario = int(input('Introduce la hora (0-23): '))
+        if 0 <= hora_usuario <= 23:
+            resultado = determinar_momento_del_dia(hora_usuario)
+            print(f'Es{resultado.lower()} segun la hora proporcionada.')
+            break
+        else:
+            print('Por favor, introduce un numero entre 0 y 23.')
+    except ValueError:
+        print('Error:por favor, introduce un numero valido.')
+
+
+
+# 39. Escribe un programa que determine qué calificación en texto tiene un alumno en base a su calificación numérica.
+
+# Las reglas de calificación son:
+# - 0 - 69 insuficiente
+# - 70 - 79 bien
+# - 80 - 89 muy bien
+# - 90 - 100 excelente
+nota = input('Introduce tu nota: ')
+if (nota >= '0'and nota < '69'):
+    print('Insuficiente')
+elif (nota >='70' and nota <='79'):
+    print('Bien')
+elif (nota >='80' and nota <='89'):
+    print('Muy Bien')
+elif (nota >='90' and nota <='100'):
+    print('Excelente')
+
+#He tenido que pensar un poco porque al principio en los comparadores de las notas los tenia en enteros y he tenido que cambiarlos a strings para que me funcionara.Tambien me hubiera funcionado si hubiera casteado la variable nota a int.
+
+
+
+# 40. Escribe una función que tome dos parámetros: figura (una cadena que puede ser "rectangulo" , "circulo" o
+# "triangulo" ) y datos (una tupla con los datos necesarios para calcular el área de la figura).
+def area_figura():
+    """
+    Calcula el area de una figura geometrica.
+
+    Returns:
+        str: El area de la figura geometrica.
+    """
+    figura = input('Introduce la figura geometrica(circulo,cuadrado, triangulo): ')
+    if figura == 'circulo':
+        radio = float(input('Introduce el radio del circulo: '))
+        area = 3.1416 * radio**2
+        print(f'El area del circulo es {area}')
+    elif figura == 'triangulo':
+        base = float(input('Introduce la base del triangulo: '))
+        altura = float(input('Introduce la altura del triangulo: '))
+        area = (base * altura) / 2
+        print(f'El area del triangulo es {area}')
+    elif figura == 'cuadrado':
+        lado = float(input('Introduce el lado del cuadrado: '))
+        area = lado**2
+        print(f'El area del cuadrado es {area}')
+    else:
+        print('Figura no valida')
+
+area_figura()
+
+
+
+# 41. En este ejercicio, se te pedirá que escribas un programa en Python que utilice condicionales para determinar el
+# monto final de una compra en una tienda en línea, después de aplicar un descuento. El programa debe hacer lo
+# siguiente:
+
+# * Solicita al usuario que ingrese el precio original de un artículo.
+# * Pregunta al usuario si tiene un cupón de descuento (respuesta sí o no).
+# * Si el usuario responde que sí, solicita que ingrese el valor del cupón de descuento.
+# * Aplica el descuento al precio original del artículo, siempre y cuando el valor del cupón sea válido (es decir, mayor
+# a cero). Por ejemplo, descuento de 15€.
+# * Muestra el precio final de la compra, teniendo en cuenta el descuento aplicado o sin él.
+# * Recuerda utilizar estructuras de control de flujo como if, elif y else para llevar a cabo estas acciones en tu
+# programa de Python.
+precio = float(input('Introduce el precio del producto: '))
+respuesta = input('¿Tienes cupon de descuento? s/n')
+if respuesta == 's':
+    descuento = float(input('Introduce el descuento: '))
+    if descuento < 0 or descuento > 100:
+        print('Descuento no valido')
+    else:
+        precio_final = precio - (precio * descuento / 100)
+        print(f'El precio final es {precio_final}')
+elif respuesta == 'n':
+    print(f'El precio final es {precio}')
