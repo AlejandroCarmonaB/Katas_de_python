@@ -553,3 +553,192 @@ print(enmascarado)
 
 # 30. Crea una función que determine si dos palabras son anagramas, es decir, si están formadas por las mismas letras
 # pero en diferente orden.
+def anagrama(palabra1, palabra2):
+    """Te dice si dos palabras son anagramas.
+
+    Args:
+        palabra1 (str): Una palabra.
+        palabra2 (str): Otra palabra.
+
+    Returns:
+        bool: True si son anagramas, False si no lo son.
+    """
+    anag =sorted(palabra1) == sorted(palabra2)
+    if anag==True:
+        return 'Son anagramas'
+    else:
+        return 'No son anagramas'
+    
+#Utilizamos la funcion sorted para ordenar las letras de cada palabra y luego comprobamos si son iguales entre si.
+palabra = 'cosa'
+palabra2 = 'saco'
+anagramas = anagrama(palabra, palabra2)
+print(anagramas)
+# Resultado: Son anagramas
+
+
+
+# 31. Crea una función que solicite al usuario ingresar una lista de nombres y luego solicite un nombre para buscar en
+# esa lista. Si el nombre está en la lista, se imprime un mensaje indicando que fue encontrado, de lo contrario, se
+# lanza una excepción.
+def buscar_en_lista_nombres():
+    """Busca un nombre en una lista de nombres.
+
+    Returns:
+        str: Mensaje indicando si el nombre se encuentra en la lista o no.
+    """
+    lista_nombres = []
+
+    while True:
+        print('Introduce un nombre o pulsa Enter para terminar:')
+        nombre = input()
+        if nombre == '':
+            break
+        lista_nombres.append(nombre)
+
+    buscar_nombre = input('Introduce el nombre a buscar: ')
+
+    if buscar_nombre in lista_nombres:
+          return 'El nombre se encuentra dentro de la lista'
+    else:
+         return 'El nombre no se encuentra dentro de la lista'
+    
+lista_nombres = buscar_en_lista_nombres()
+print(lista_nombres)
+
+
+
+# 32. Crea una función que tome un nombre completo y una lista de empleados, busque el nombre completo en la lista y
+# devuelve el puesto del empleado si está en la lista, de lo contrario, devuelve un mensaje indicando que la persona
+# no trabaja aquí.
+def buscar_nombre_completo_en_lista():
+    """Busca un nombre completo en una lista de nombres.
+
+    Returns:
+        str: Mensaje indicando si el nombre se encuentra en la lista o no, de ser, tambien devuelve el trabajo que tiene.
+    """
+    lista_nombres = [
+        {'nombre': 'Juan', 'apellido':'Montoro','trabajo': 'programador'},
+        {'nombre': 'Maria', 'apellido':'Segovia','trabajo': 'medico'},
+        {'nombre': 'Alejandro', 'apellido':'Carmona','trabajo': 'data scientist'},
+        {'nombre': 'Edu', 'apellido':'Ilustrisima','trabajo': 'profesor'}
+    ]
+    buscar_nombre = input('Introduce el nombre a buscar: ')
+    
+    for nombre in lista_nombres:
+        if nombre['nombre'] == buscar_nombre:
+            return f'El nombre se encuentra en la lista y su trabajo es {nombre["trabajo"]}'
+    return f'{buscar_nombre} no trabaja con nosotros'
+
+#He tenido problemas con el retorno de la parte del for, porque lo estaba poniendo con un else despues del if, y no me imprimia el mensaje correcto.
+buscar_nombre_completo_en_lista()
+# Resultado: 'Pedro no trabaja con nosotros'
+
+
+
+# 33. Crea una función lambda que sume elementos correspondientes de dos listas dadas.
+lista_num3 = [3,21,4,13,8,25]
+lista_num4 = [1,2,3,4,5,6]
+suma_listas = list(map(lambda x, y: x+y, lista_num3, lista_num4))
+print(suma_listas)
+# Resultado: [4, 23, 7, 17, 13, 31]
+
+
+
+# 34. Crea la clase Arbol , define un árbol genérico con un tronco y ramas como atributos. Los métodos disponibles son:
+# crecer_tronco , nueva_rama , crecer_ramas , quitar_rama e info_arbol . El objetivo es implementar estos métodos para
+# manipular la estructura del árbol.
+
+# Código a seguir:
+
+# - Inicializar un árbol con un tronco de longitud 1 y una lista vacía de ramas.
+# - Implementar el método crecer_tronco para aumentar la longitud del tronco en una unidad.
+# * Implementar el método nueva_rama para agregar una nueva rama de longitud 1 a la lista de ramas.
+# * Implementar el método crecer_ramas para aumentar en una unidad la longitud de todas las ramas existentes.
+# * Implementar el método quitar_rama para eliminar una rama en una posición específica.
+# * Implementar el método
+# info_arbol para devolver información sobre la longitud del tronco, el número de ramas y las longitudes de las
+# mismas.
+
+# Caso de uso:
+# * Crear un árbol.
+# * Hacer crecer el tronco del árbol una unidad.
+# * Añadir una nueva rama al árbol.
+# * Hacer crecer todas las ramas del árbol una unidad.
+# * Añadir dos nuevas ramas al árbol.
+# * Retirar la rama situada en la posición 2.
+# * Obtener información sobre el árbol.
+class Arbol:
+    def __init__(self):
+        self.tronco = 1
+        self.ramas = []
+
+    def crecer_tronco(self):
+        self.tronco += 1
+
+    def nueva_rama(self):
+        self.ramas.append(1)
+
+    def crecer_ramas(self):
+        self.ramas = [longitud + 1 for longitud in self.ramas]
+
+    def quitar_ramas(self,posicion):
+        if 0 <= posicion < len(self.ramas):
+            self.ramas.pop(posicion) #Elimina la rama en la posicion dada
+        else:
+            print('No se puede quitar la rama: la posicion {posicion} no es valida')
+
+    def info_arbol(self):
+        return (f'Longitud del tronco: {self.tronco}\n'
+                f'Numero de ramas: {len(self.ramas)}\n'
+                f'Longitudes de las ramas: {self.ramas}') 
+    
+class Arbol:
+    def __init__(self):
+        self.tronco = 1
+        self.ramas = []
+
+    def crecer_tronco(self):
+        self.tronco += 1
+
+    def nueva_rama(self):
+        self.ramas.append(1)
+
+    def crecer_ramas(self):
+        self.ramas = [longitud + 1 for longitud in self.ramas]
+
+    def quitar_ramas(self,posicion):
+        if 0 <= posicion < len(self.ramas):
+            self.ramas.pop(posicion) #Elimina la rama en la posicion dada
+        else:
+            print('No se puede quitar la rama: la posicion {posicion} no es valida')
+
+    def info_arbol(self):
+        return (f'Longitud del tronco: {self.tronco}\n'
+                f'Numero de ramas: {len(self.ramas)}\n'
+                f'Longitudes de las ramas: {self.ramas}') 
+
+# Caso de uso:
+
+barbol = Arbol()
+barbol.crecer_tronco() # El tronco crece a 2
+barbol.tronco
+# Resultado: 4
+barbol.nueva_rama() # Añade una nueva rama de longitud 1
+barbol.ramas
+# Resultado: [1]
+barbol.crecer_ramas() # Hace crecer todas las ramas en 1
+barbol.ramas
+# Resultado: [2]
+barbol.nueva_rama() # Añade una nueva rama de longitud 1
+barbol.nueva_rama() # Añade otra nueva rama de longitud 1
+barbol.ramas
+# Resultado: [2, 1, 1]
+barbol.quitar_ramas(2) # Quita la rama en la posición 2
+barbol.ramas
+# Resultado: [2, 1]
+print(barbol.info_arbol()) # Muestra la información del árbol
+# Resultado: 
+# Longitud del tronco: 4
+# Numero de ramas: 2
+# Longitudes de las ramas: [2, 1]
